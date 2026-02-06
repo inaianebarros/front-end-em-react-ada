@@ -1,0 +1,4 @@
+nome: Inaiane
+idade: 28
+altura: 1.56
+dataNasc: 25-08-1997
