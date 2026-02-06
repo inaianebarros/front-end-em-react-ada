@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Heebo", sans-serif;
+}
+
+body {
+  background-color: #f7f7f7;
+}
+
+header {
+  background-color: #ffffff;
+  height: 5rem;
+}
+
+header #navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  padding: 0 2rem;
+  max-width: 75rem; /* serve para definir o tamanho da nav */
+  margin: 0 auto; /* centraliza a nav na tela deixando as laterais*/
+}
+
+header #navbar .nav-brand {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: black;
+}
+
+header #navbar .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+header #navbar .nav-list .nav-item a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+header #navbar .nav-list .nav-item a:hover {
+  color: #555555;
+  /* transition: color 0.3s; */
+}
+
+header #navbar .hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 0.3rem;
+}
+
+@media (max-width: 800px) {
+  header #navbar .hamburger-menu {
+    display: block;
+  }
+
+  header #navbar .nav-list {
+    display: none;
+  }
+}
+
+main {
+  margin-top: 6rem;
+}
+
+main #banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+main #banner .banner-content .banner-content-title {
+  font-size: 2.75rem;
+  font-weight: 500;
+  line-height: 3.75rem;
+  margin-bottom: 2.5rem;
+}
+
+main #banner .banner-content .banner-content-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  max-width: 31.25rem;
+  margin-bottom: 2.5rem;
+  text-align: justify;
+}
+
+main #banner .banner-content .banner-content-btn {
+  background-color: #00a8cc;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+main #banner .banner-content-img {
+  border-radius: 50%;
+  width: 100%;
+  max-width: 300px;
+}
+
+@media (max-width: 920px) {
+  main #banner {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  main #banner .banner-content {
+    text-align: center;
+  }
+}
+
+section#posts {
+  margin-top: 4.43rem;
+  background-color: rgb(231, 228, 228);
+}
+
+#posts .posts-content {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 2rem 2rem;
+}
+
+#posts .posts-content .post-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 2rem 0;
+}
+
+#posts .posts-content .post-content-header .section-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+#posts .posts-content .post-content-header .view-all-posts {
+  text-decoration: none;
+  color: #555555;
+}
+
+#posts .posts-content .post-cards {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+#posts .posts-content .post-cards .post-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 4px;
+}
+
+#posts .posts-content .post-cards .post-card h3 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 2.3rem;
+}
+
+#posts .posts-content .post-cards .post-card span {
+  display: block;
+  font-size: 1.12rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  color: #555555;
+}
+
+#posts .posts-content .post-cards .post-card p {
+  text-align: justify;
+  font-size: 1rem;
+  font-weight: 300;
+}
+@media (max-width: 800px) {
+  #posts .posts-content .post-cards {
+    flex-direction: column;
+  }
+}
