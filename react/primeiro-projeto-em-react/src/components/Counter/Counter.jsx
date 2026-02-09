@@ -1,44 +1,50 @@
-import React from 'react';
-export class Counter extends React.Component{
-    constructor(){
-        super()
-        this.state = {
-            contador: 0,
-            name: '',
-            password: ''
-        }
-    }
+import React, { useState } from "react";
 
-    render(){
-        return(
-            <div style={{marginTop:"20px", marginLeft:"20px"}} >
-                <h1>{this.state.contador}</h1>
+export function Counter() {
+  const [contador, setContador] = useState(0);
 
-                <div>
-                    <button onClick={()=> {this.setState({contador: this.state.contador -1})}}>
-                        Diminuir
-                    </button>
-                    <button onClick ={()=>{this.setState({contador: this.state.contador + 1})}}>
-                        Aumentar
-                    </button>
-                </div>
+  return (
+    <div style={{ marginTop: "20px", marginLeft: "20px" }}>
+      <h1>{contador}</h1>
 
-                <form style={{marginTop:"40px", marginLeft:"20px"}}>
-                    <input type='text'
-                    placeholder='Nome'
-                    value={this.state.name}
-                    onChange={(e)=>{
-                        this.setState({name: e.target.value})}}/>
+      <div>
+        <button
+          onClick={() => {
+            setContador(contador - 1);
+          }}
+        >
+          Diminuir
+        </button>
+        <button
+          onClick={() => {
+            setContador(contador + 1);
+          }}
+        >
+          Aumentar
+        </button>
+      </div>
+      {/*
+      <form style={{ marginTop: "40px", marginLeft: "20px" }}>
+        <input
+          type="text"
+          placeholder="Nome"
+          value={this.state.name}
+          onChange={(e) => {
+            this.setState({ name: e.target.value });
+          }}
+        />
 
-                    <input type='password'
-                    placeholder='Senha'
-                    value={this.state.password}
-                    onChange={(event)=>{
-                        this.setState({password: event.target.value})}}/>
+        <input
+          type="password"
+          placeholder="Senha"
+          value={this.state.password}
+          onChange={(event) => {
+            this.setState({ password: event.target.value });
+          }}
+        />
 
-                    <button>Enviar</button>
-                </form>
-            </div>
-        )
-    }
+        <button>Enviar</button>
+      </form> */}
+    </div>
+  );
 }
