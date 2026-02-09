@@ -3,3 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body,
+button,
+inout,
+select,
+option,
+textare {
+  font-family: "Cairo", sans-serif;
+}
