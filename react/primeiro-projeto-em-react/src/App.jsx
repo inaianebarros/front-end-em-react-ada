@@ -1,41 +1,78 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Article } from "./components/Article/Article";
 // import { Counter } from "./components/Counter/Counter";
 
-import './styles/App.css'
-
-import articleImg from "../src/assets/images/news-page.png"
-import articleImg2 from "../src/assets/images/img-ia.jpeg"
+import "./styles/App.css";
 
 // componente em classe é uma classe que herda a classe React.Component do React
 // e retorna HTML dentro do método render
 
 //componente funcional é uma função que retorna HTML
+function App() {
+  const [news, setNews] = useState([]);
 
-class App extends React.Component {
-  //metodo responsavel por renderizar o HTML do nosso componente
-  render() {
-    return (
-      <>
-         <Navbar />
-         {/* <Counter/> */}
+  useEffect(() => {
+    async function loadNews() {
+      const response = await axios.get(
+        "https://api.spaceflightnewsapi.net/v4/articles/",
+      );
+      const newsData = response.data;
+      setNews(newsData.results || []);
+    }
+    loadNews();
+  }, []);
 
-         <section id="articles">
-            <Article title="Designing Dashboards"
-            provider="NASA"
-            description="A dashboard is a tool that helps users to visualize and understand complex data. It typically consists of a set of widgets that display different metrics and trends."
-            img={articleImg}
+  // useEffect(() => {
+  //   fetch("https://api.spaceflightnewsapi.net/v4/articles/")
+  //     .then((response) => response.json())
+  //     .then((json) => setNews(json));
+  // }, []);
+
+  return (
+    <>
+      <Navbar />
+
+      {/* <Counter/> */}
+
+      <section id="articles">
+        {news.length === 0 ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              height: "400px",
+              width: "100%",
+              alignItems: "center",
+            }}
+          >
+            <ThreeDots
+              height="80"
+              width="80"
+              radius="9"
+              color="white"
+              ariaLabel="loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
             />
-            <Article title="The Evolution of AI"
-            provider="MIT Technology Review"
-            description="Artificial intelligence (AI) is a branch of computer science that focuses on creating machines that can perform tasks that typically require human intelligence, such as visual perception, speech recognition, and decision-making."
-            img={articleImg2}
+          </div>
+        ) : (
+          news.map((article) => (
+            <Article
+              key={article.id}
+              title={article.title}
+              provider={article.news_site}
+              description={article.summary}
+              img={article.image_url}
             />
-         </section>
-      </>
-    )
-  }
+          ))
+        )}
+      </section>
+    </>
+  );
 }
 
 export default App;

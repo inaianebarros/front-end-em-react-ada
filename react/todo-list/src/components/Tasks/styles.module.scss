@@ -7,6 +7,7 @@
     display: flex;
     align-items: flex-end;
     gap: 1rem;
+    margin-bottom: 1rem;
 
     div {
       display: flex;
@@ -39,6 +40,9 @@
     list-style: none;
     margin-top: 2rem;
     padding: 0.25rem;
+    li + li {
+      margin-top: 0.5rem;
+    }
   }
 
   li {
@@ -54,5 +58,33 @@
     label {
       font-size: 1rem;
     }
+    button {
+      margin-left: auto;
+    }
   }
+}
+.done {
+  text-decoration: line-through;
+}
+
+.trash_button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #e53935;
+  border: 1px solid #e53935;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.trash_button:hover {
+  background-color: #e53935;
+  color: #ffffff;
 }

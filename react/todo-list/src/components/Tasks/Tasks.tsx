@@ -1,15 +1,11 @@
 import styles from "./styles.module.scss";
-import { useState, type SubmitEventHandler } from "react";
-
-interface Task {
-  title: string;
-  done: boolean;
-  id: number;
-}
+import { useContext, useState, type SubmitEventHandler } from "react";
+import { TasksContext } from "../../context/TasksContext";
 
 export const Tasks: React.FC = () => {
   const [taskTitle, setTaskTitle] = useState("");
-  const [tasks, setTasks] = useState([] as Task[]);
+
+  const { tasks, setTasks } = useContext(TasksContext);
 
   const handleSubmitAddTask: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -20,12 +16,32 @@ export const Tasks: React.FC = () => {
     }
 
     //adicionar tarefa à lista
-    setTasks([
+    const newTasks = [
       ...tasks,
       { title: taskTitle, done: false, id: new Date().getTime() },
-    ]);
+    ];
+    setTasks(newTasks);
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
+
     setTaskTitle("");
   };
+
+  //tarefas concluidas
+  function handleChangeTaskDone(taskId: number) {
+    const newTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, done: !task.done };
+      }
+      return task;
+    });
+    setTasks(newTasks);
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
+  }
+  function handleRemoveTask(taskId: number) {
+    const newTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(newTasks);
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
+  }
 
   return (
     <section className={styles.container}>
@@ -46,8 +62,29 @@ export const Tasks: React.FC = () => {
         {tasks.map((task) => {
           return (
             <li key={task.id}>
-              <input type="checkbox" id={`task-${task.id}`} />
-              <label htmlFor={`task-${task.id}`}>{task.title}</label>
+              <input
+                type="checkbox"
+                id={`task-${task.id}`}
+                checked={task.done}
+                onChange={() => {
+                  handleChangeTaskDone(task.id);
+                }}
+              />
+              <label
+                className={task.done ? styles.done : ""}
+                htmlFor={`task-${task.id}`}
+              >
+                {task.title}
+              </label>
+              <button
+                type="button"
+                className={styles.trash_button}
+                aria-label="Remover tarefa"
+                title="Remover tarefa"
+                onClick={() => handleRemoveTask(task.id)}
+              >
+                🗑️
+              </button>
             </li>
           );
         })}
