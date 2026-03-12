@@ -17,3 +17,31 @@ export const Container = styled.aside<ContainerProps>`
 `;
 
 export const Title = styled.h1``;
+
+export const CartProductList = styled.ul`
+  list-style: none;
+  padding: 2rem 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+export const CartProductItem = styled.li`
+  /* display: flex;
+  align-items: center;
+  gap: 1rem; */
+`;
+
+export const Price = styled.strong``;
+
+export const TotalPrice = styled.strong``;
+
+export const RemoveFromCartButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: red;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+`;
